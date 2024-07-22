@@ -42,8 +42,8 @@ def get_song_list(rel_song_path):
                                   not word.startswith('contribut')]
                 
                 # Stem and lemmatize the filtered words
-                stemmed_lemmas = [lemmatizer.lemmatize(stemmer.stem(word)) for word in filtered_words]
-                word_list.extend(stemmed_lemmas)  # Add stemmed and lemmatized words to the list
+                #stemmed_lemmas = [lemmatizer.lemmatize(stemmer.stem(word)) for word in filtered_words]
+                word_list.extend(filtered_words)  # Add stemmed and lemmatized words to the list
     except FileNotFoundError:
         print(f"Error: The file at {rel_song_path} does not exist.")
     except IOError as e:
