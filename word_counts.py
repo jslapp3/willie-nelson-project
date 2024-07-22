@@ -25,14 +25,12 @@ def get_song_list(rel_song_path):
     stemmer = PorterStemmer()
     lemmatizer = WordNetLemmatizer()
     
-    # Get stop words from NLTK and convert to a set for faster lookups
     stop_words = set(stopwords.words('english'))
 
     weird_words = {'willie', 'nelson', 'ticket', 'anymoreembed', '$19you', 
                    'might', 'also', 'like3embed', 'contributorswhiskey', 'tickets', 'liveget', 
                    'roundsee'}
 
-    # Combine stop words and weird words into a single set
     excluded_words = stop_words.union(weird_words)
 
     word_list = []
@@ -111,8 +109,7 @@ def get_whole_word_counts(data_dir):
     
     return whole_word_counts
 
-# Example usage
-data_dir = 'data'  # Replace with your actual data directory path
+data_dir = 'data'  
 whole_word_counts = get_whole_word_counts(data_dir)
 
 # Write the dictionary to a JSON file
