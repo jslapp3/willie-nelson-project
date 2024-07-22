@@ -9,7 +9,12 @@ def jsons_df(json_path):
     json_df = json_df.astype(int)
     return json_df
 
-print('\nDataframe of all words and their counts in each album:\n')
-album_counts = jsons_df('album_word_counts.json')
-full_word_counts = pd.DataFrame(album_counts.sum(axis=1), columns=['count']).sort_values('count', ascending=False)
+print('\nBag of Words for Each Album:\n')
+album_bow = jsons_df('album_word_counts.json')
+album_bow.to_csv('bag_of_words.csv')
+print(album_bow)
+
+print('\nTotal Çareer Word Count\n')
+full_word_counts = pd.DataFrame(album_bow.sum(axis=1), columns=['count']).sort_values('count', ascending=False)
+full_word_counts.to_csv('career_word_counts.csv')
 print(full_word_counts)
