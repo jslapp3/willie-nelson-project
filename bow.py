@@ -28,7 +28,11 @@ def get_song_list(rel_song_path):
     # Get stop words from NLTK and convert to a set for faster lookups
     stop_words = set(stopwords.words('english'))
 
-    weird_words = set(['willie', 'nelson', 'ticket', 'anymoreembed'])
+    weird_words = {'willie', 'nelson', 'ticket', 'anymoreembed', '$19you', 
+                   'might', 'also', 'like3embed', 'contributorswhiskey'}
+
+    # Combine stop words and weird words into a single set
+    excluded_words = stop_words.union(weird_words)
 
     word_list = []
     try:
@@ -39,7 +43,7 @@ def get_song_list(rel_song_path):
                 words = line.lower().split()  # Split the line into words
                 # Filter out words that are stop words, match the tags pattern, unwanted patterns, or start with specific prefixes
                 filtered_words = [word for word in words if word 
-                                  not in (stop_words and weird_words) and
+                                  not in excluded_words and
                                   not tags_pattern.search(word) and
                                   not unwanted_pattern.search(word) and
                                   not word.startswith('contribut')]
