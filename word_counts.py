@@ -29,7 +29,7 @@ def get_song_list(rel_song_path):
     stop_words = set(stopwords.words('english'))
 
     weird_words = {'willie', 'nelson', 'ticket', 'anymoreembed', '$19you', 
-                   'might', 'also', 'like3embed', 'contributorswhiskey'}
+                   'might', 'also', 'like3embed', 'contributorswhiskey', 'tickets', 'liveget'}
 
     # Combine stop words and weird words into a single set
     excluded_words = stop_words.union(weird_words)
