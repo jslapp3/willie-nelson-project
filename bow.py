@@ -28,6 +28,8 @@ def get_song_list(rel_song_path):
     # Get stop words from NLTK and convert to a set for faster lookups
     stop_words = set(stopwords.words('english'))
 
+    weird_words = set(['willie', 'nelson', 'ticket', 'anymoreembed'])
+
     word_list = []
     try:
         with open(rel_song_path, 'r') as f:
@@ -36,7 +38,8 @@ def get_song_list(rel_song_path):
             for line in lyrics:
                 words = line.lower().split()  # Split the line into words
                 # Filter out words that are stop words, match the tags pattern, unwanted patterns, or start with specific prefixes
-                filtered_words = [word for word in words if word not in stop_words and
+                filtered_words = [word for word in words if word 
+                                  not in (stop_words and weird_words) and
                                   not tags_pattern.search(word) and
                                   not unwanted_pattern.search(word) and
                                   not word.startswith('contribut')]
@@ -106,9 +109,6 @@ def get_whole_word_counts(data_dir):
 # Example usage
 data_dir = 'data'  # Replace with your actual data directory path
 whole_word_counts = get_whole_word_counts(data_dir)
-
-# Print the dictionary in a readable format
-pprint(whole_word_counts)
 
 # Write the dictionary to a JSON file
 json_file_path = 'album_word_counts.json'
